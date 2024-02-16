@@ -5,15 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Training</title>
     <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.13.0/dist/tf.min.js"></script>
-    <script src="script.js" defer></script>
+    <script src="script2.js" defer></script>
 </head>
 <body>
     <h1>Chatbot Training</h1>
-    <textarea id="training-data" rows="10" cols="50" placeholder="Enter training data">
-        How are you?|I'm fine.
-        What's your name?|I'm a chatbot.
-        Hello!|Hi there!
-        Goodbye!|See you later.
+    <textarea id="training-data" rows="10" cols="50" placeholder="Enter training data">How are you?|I'm fine.
+What's your name?|I'm a chatbot.
+Hello!|Hi there!
+Goodbye!|See you later.
     </textarea><br>
     <button onclick="trainModel()">Train Model</button>
     <p id="training-status">Training status: Not started</p>

@@ -96,6 +96,12 @@ async function trainModel() {
     const inputTensor = tf.tensor2d(paddedInputSequences);
     const outputTensor = tf.tensor3d(oneHotEncode(paddedOutputSequences, VOCAB_SIZE), [paddedOutputSequences.length, MAX_SEQUENCE_LENGTH, VOCAB_SIZE]);
 
+    model.compile({
+        loss: 'categoricalCrossentropy',
+        optimizer: 'adam',
+        metrics: ['accuracy']
+    });
+    
     await model.fit(inputTensor, outputTensor, {
         epochs: 1000,
         callbacks: {
@@ -240,12 +246,6 @@ const createModelBtn = document.getElementById('createModelBtn').addEventListene
     model.add(tf.layers.embedding({ inputDim: VOCAB_SIZE, outputDim: EMBEDDING_DIM, inputLength: MAX_SEQUENCE_LENGTH }));
     model.add(tf.layers.lstm({ units: LSTM_UNITS, returnSequences: true }));
     model.add(tf.layers.dense({ units: VOCAB_SIZE, activation: 'softmax' }));
-
-    model.compile({
-        loss: 'categoricalCrossentropy',
-        optimizer: 'adam',
-        metrics: ['accuracy']
-    });
 });
 
 const loadModelBtn = document.getElementById('loadModelBtn').addEventListener('click', async () => {
